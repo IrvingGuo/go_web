@@ -1,5 +1,9 @@
 package model
 
+import "go_web/config"
+
+var db = config.Db
+
 type Name struct {
 	ID     string  `json:"id"`
 	Title  string  `json:"title"`

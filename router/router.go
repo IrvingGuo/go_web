@@ -1,4 +1,4 @@
-package server
+package router
 
 import (
 	"go_web/api"
@@ -6,8 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func newRouter() *gin.Engine {
-	router := gin.New()
+func InitRouter() *gin.Engine {
+	router := gin.Default()
 
 	apiRouter := router.Group("/api")
 	{

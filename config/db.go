@@ -1,25 +1,16 @@
 package config
 
 import (
+	"log"
 	"time"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"gorm.io/gorm/logger"
 )
 
-var (
-	Db *gorm.DB
-)
+var Db *gorm.DB
 
-type mysqlConf struct {
-	DSN          string `mapstructure:"dsn" json: "dsn" yaml: "dsn"`
-	MaxIdleConns int    `mapstructure:"max-idle-conns" json:"maxIdleConns" yaml:"max-idle-conns"`
-	MaxOpenConns int    `mapstructure:"max-open-conns" json:"maxOpenConns" yaml:"max-open-conns"`
-	LogMode      bool   `mapstructure:"log-mode" json:"logMode" yaml:"log-mode"`
-}
-
-func initMysql() {
+func init() {
 	var err error
 	db, _ := gorm.Open(mysql.New(mysql.Config{
 		DSN:                       "root:root@tcp(10.70.9.111:3306)/test?charset=utf8mb4&parseTime=True&loc=UTC",
@@ -38,17 +29,7 @@ func initMysql() {
 	sqlDB.SetMaxOpenConns(100)          //sqlDB.SetMaxOpenConns(100)
 	sqlDB.SetConnMaxLifetime(time.Hour) //SetConnMaxLifetime 设置了连接可复用的最大时间
 	Db = db
-}
-
-func logMode(mod bool) *gorm.Config {
-	var logMode logger.Interface
-	if mod {
-		logMode = logger.Default.LogMode(logger.Info)
-	} else {
-		logMode = logger.Default.LogMode(logger.Silent)
-	}
-	return &gorm.Config{
-		Logger:                                   logMode,
-		DisableForeignKeyConstraintWhenMigrating: true,
+	if err != nil {
+		log.Fatal(err.Error())
 	}
 }

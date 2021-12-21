@@ -1,13 +1,13 @@
 # JRS Configurations
 
-system:
-  addr: '127.0.0.1:8080'
+# system:
+#   addr: '127.0.0.1:8080'
 
-mysql:
-  dsn: 'root:root@tcp(10.70.9.111:3306)/jrs?charset=utf8mb4&parseTime=True&loc=UTC'
-  max-idle-conns: 10
-  max-open-conns: 100
-  log-mode: false
+# mysql:
+#   dsn: 'root:root@tcp(10.70.9.111:3306)/jrs?charset=utf8mb4&parseTime=True&loc=UTC'
+#   max-idle-conns: 10
+#   max-open-conns: 100
+#   log-mode: false
 
 # ldap:
 #   url: 'ldap://10.70.8.3:389'
