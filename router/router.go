@@ -17,8 +17,8 @@ func InitRouter() *gin.Engine {
 			nameGroup.GET("", api.GetAllNames)
 			nameGroup.PUT("", api.Savename)
 
-			nameGroup.GET("", api.GetNameById)
-			nameGroup.DELETE("", api.DeleteNameById)
+			nameGroup.GET("/:id", api.GetNameById)
+			nameGroup.DELETE("/:id", api.DeleteNameById)
 		}
 
 	}
