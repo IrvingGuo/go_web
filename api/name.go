@@ -13,7 +13,11 @@ func Savename(c *gin.Context) {
 }
 
 func GetAllNames(c *gin.Context) {
-
+	if names, err := model.FindAllNames(); err != nil {
+		AbortFindFailed(c, err)
+	} else {
+		OkWithData(c, names)
+	}
 }
 
 func GetNameById(c *gin.Context) {
